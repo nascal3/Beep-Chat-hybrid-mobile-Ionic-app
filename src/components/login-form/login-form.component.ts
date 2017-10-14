@@ -1,9 +1,9 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { AngularFireAuth } from "angularfire2/auth";
 import { Account } from '../../models/account/account.interface';
 import { ToastController } from 'ionic-angular';
 import { LoginResponse } from '../../models/login/login-response.interface';
+import {AuthService } from '../../providers/auth/auth.service';
 
 /**
  * Generated class for the LoginFormComponent component.
@@ -23,27 +23,15 @@ export class LoginFormComponent {
 
   constructor(
     private navCtrl: NavController,
-    private aAuth: AngularFireAuth,
-    private toast: ToastController
+    private toast: ToastController,
+    private authSrv: AuthService
   ) {
     this.loginStatus = new EventEmitter<any>();
   }
 
   async login() {
-    try {
-      const result:LoginResponse = {
-          result: await this.aAuth.auth.signInWithEmailAndPassword(this.account.email, this.account.password)
-      }
-      this.loginStatus.emit(result);
-      console.log(result);
-    }catch (e){
-      console.error(e);
-      const error: LoginResponse = {
-        error: e
-      }
-      this.loginStatus.emit(error);
-      // this.toast.create({message: e.message, duration: 3000}).present();
-    }
+    const loginResponse = await this.authSrv.signInWithEmailAndPassword(this.account)
+    this.loginStatus.emit(loginResponse);
   }
 
 
