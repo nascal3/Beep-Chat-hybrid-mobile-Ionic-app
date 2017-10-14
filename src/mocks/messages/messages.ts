@@ -1,5 +1,5 @@
 import { Message } from '../../models/messages/message.interface';
-import { userList} from '../users/users';
+import { userList } from "../profiles/profiles"
 
 const messageList: Message[] = []
 
