@@ -16,6 +16,10 @@ export class AuthService {
     private aAuth: AngularFireAuth
   ) { }
 
+  getAuthenticatedUser() {
+    return this.aAuth.authState;
+  }
+
   async createUserWithEmailAndPassword (account: Account) {
     try {
       return<LoginResponse> {

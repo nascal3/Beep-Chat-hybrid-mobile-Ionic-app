@@ -1,16 +1,20 @@
 <ion-card>
   <ion-card-content>
-    <ion-item>
-      <ion-label floating>Email Address</ion-label>
-      <ion-input type="email" [(ngModel)]="account.email"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label floating>Password</ion-label>
-      <ion-input type="password" [(ngModel)]="account.password"></ion-input>
-    </ion-item>
+    <form #registerForm=ngForm novalidate>
+      <ion-item>
+        <ion-label floating>Email Address</ion-label>
+        <ion-input type="email" #email="ngModel" [(ngModel)]="account.email" name="email" required pattern="[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?"></ion-input>
+      </ion-item>
+      <span  class="global__input-error" padding *ngIf="email.invalid && email.dirty">Please insert a valid email</span>
+      <ion-item>
+        <ion-label floating>Password</ion-label>
+        <ion-input type="password" #password="ngModel" [(ngModel)]="account.password" name="password"  required pattern="(?=.*[0-9])(?=.*[A-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$"></ion-input>
+      </ion-item>
+      <span class="global__input-error" padding *ngIf="password.invalid && password.dirty">Password must have 6 to 16 characters, 1 number, 1 uppercase letter and 1 special character</span>
+    </form>
   </ion-card-content>
 
   <ion-row class="register-form__button">
-    <button ion-button (click)="register()">Register</button>
+    <button ion-button (click)="register()" [disabled]="registerForm.invalid">Register</button>
   </ion-row>
 </ion-card>
