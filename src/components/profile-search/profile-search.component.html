@@ -1,0 +1,11 @@
+<!-- Generated template for the ProfileSearchComponent component -->
+<ion-searchbar [(ngModel)]="query" (ionChange)="searchUser(query)"></ion-searchbar>
+
+<ion-list *ngIf="profileList?.length>0">
+  <ion-item *ngFor="let profile of profileList">
+    <ion-avatar item-left>
+      <img src="assets/img/avatar3.png" />
+    </ion-avatar>
+    <h2>{{profile.firstName}} {{profile.lastName}}</h2>
+  </ion-item>
+</ion-list>
