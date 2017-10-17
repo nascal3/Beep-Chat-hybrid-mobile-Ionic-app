@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import {Profile} from "../../models/profile/profile.interfacer";
+import {AuthService} from "../../providers/auth/auth.service";
 
 /**
  * Generated class for the ProfilePage page.
@@ -18,7 +19,16 @@ export class ProfilePage {
 
   existingProfile = {} as Profile;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    private auth: AuthService
+    ) {
+  }
+
+  signOut() {
+    this.auth.signOut();
+    this.navCtrl.setRoot('LoginPage');
   }
 
   getExistingProfile(profile: Profile) {
