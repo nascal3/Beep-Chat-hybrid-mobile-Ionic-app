@@ -33,6 +33,12 @@ export class ChannelsPage {
     this.getChannels();
   }
 
+  selectChannel(channel: Channel ) {
+    this.navCtrl.push('ChannelChatPage', {
+      channel
+    });
+  }
+
   showAddChannelDialog() {
     this.alertCtrl.create({
       title: 'Channel Name',

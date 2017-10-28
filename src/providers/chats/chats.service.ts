@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {AngularFireDatabase, AngularFireList} from "angularfire2/database";
 import {Channel} from "../../models/channel/channel.interface";
+import {ChannelMessages} from "../../models/channel/channel-messages.interface";
 
 /*
   Generated class for the ChatsProvider provider.
@@ -23,6 +24,14 @@ export class ChatsService {
 
   getChannelListRef(){
     return this.database.list(`channel-names`).valueChanges();
+  }
+
+  getChannelChatRef(channelKey: string) {
+    return this.database.list(`channels/${channelKey}`).valueChanges();
+  }
+
+  async sendChannelChatMessage(channelName: string, message: ChannelMessages) {
+     await this.database.list(`/channels/${channelName}`).push(message);
   }
 
 }
