@@ -3,6 +3,9 @@ import {AngularFireDatabase, AngularFireList, AngularFireObject} from 'angularfi
 import { User } from 'firebase/app';
 import { Profile } from '../../models/profile/profile.interfacer';
 import "rxjs/add/operator/take";
+import "rxjs/add/operator/map";
+import "rxjs/add/operator/mergeMap";
+import {AuthService} from "../auth/auth.service";
 
 /*
   Generated class for the DataProvider provider.
@@ -17,6 +20,7 @@ export class DataService {
   profileList: AngularFireList<Profile>;
 
   constructor(
+    private authService: AuthService,
     private database: AngularFireDatabase
   ) {  }
 

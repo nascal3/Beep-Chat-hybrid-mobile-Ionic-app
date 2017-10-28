@@ -33,7 +33,7 @@ export class ProfileViewComponent implements OnInit{
     this.auth.getAuthenticatedUser().subscribe((user: User) => {
         this.data.getProfile(user).subscribe(profile => {
             this.userProfile = <Profile>profile.payload.val();
-             this.existingProfile.emit(this.userProfile);
+            this.existingProfile.emit(this.userProfile);
             this.loader.dismiss();
         })
     });

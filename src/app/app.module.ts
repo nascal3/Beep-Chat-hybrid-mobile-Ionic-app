@@ -11,6 +11,7 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { MyApp } from './app.component';
 import { AuthService } from '../providers/auth/auth.service';
 import { DataService } from '../providers/data/data.service';
+import { ChatsService } from '../providers/chats/chats.service';
 
  const config = {
     apiKey: "AIzaSyAnEmU78X_EpCVZNJgj4Qf9p1dyBEAdkh8",
@@ -42,7 +43,8 @@ import { DataService } from '../providers/data/data.service';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AuthService,
-    DataService
+    DataService,
+    ChatsService
   ]
 })
 export class AppModule {}
